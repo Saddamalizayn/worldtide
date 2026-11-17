@@ -1,3 +1,5 @@
+(function(){
+"use strict";
 // WORLDTIDE — Supabase-connected V1
 // Publishable browser key is safe to use here. Never put a service_role key in frontend code.
 const SUPABASE_URL = "https://tpwyjbpgllyajqlabeff.supabase.co";
@@ -100,3 +102,5 @@ async function init(){
  if("serviceWorker" in navigator&&location.protocol!=="file:")window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
 }
 init();
+
+})();
