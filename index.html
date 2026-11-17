@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08111f"><meta name="description" content="WORLDTIDE — discover and evolve a hidden digital world.">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css"><title>WORLDTIDE — The world has another side</title>
+</head>
+<body>
+<div class="app-shell">
+<header class="topbar">
+  <a class="brand" href="#" aria-label="WORLDTIDE home"><span class="brand-mark">◉</span><span>WORLD<span class="tide">TIDE</span></span></a>
+  <div class="top-actions"><span class="local-pill"><i></i> LOCAL WORLD</span><button class="icon-btn" id="aboutBtn" aria-label="About">?</button></div>
+</header>
+<main>
+<section class="hero">
+  <div class="eyebrow"><span class="pulse"></span> YOUR WORLD IS WAITING</div>
+  <h1>The world has<br><em>another side.</em></h1>
+  <p>Discover digital Seeds. Add your perspective. Change what the world becomes.</p>
+  <button class="primary-btn" id="createHero">＋ Plant a Seed <span>↗</span></button>
+  <div class="hero-orb orb-one"></div><div class="hero-orb orb-two"></div><div class="hero-grid"></div>
+</section>
+
+<section class="stats-row" aria-label="Your world statistics">
+  <div><strong id="seedCount">0</strong><span>SEEDS</span></div>
+  <div><strong id="evolutionCount">0</strong><span>EVOLUTIONS</span></div>
+  <div><strong id="savedCount">0</strong><span>SAVED</span></div>
+</section>
+
+<nav class="tabs" aria-label="Main navigation">
+  <button class="tab active" data-view="discover">◈ <span>Discover</span></button>
+  <button class="tab" data-view="create">＋ <span>Create</span></button>
+  <button class="tab" data-view="saved">♡ <span>Saved</span></button>
+  <button class="tab" data-view="activity">↗ <span>Activity</span></button>
+</nav>
+
+<section id="discoverView" class="view active-view">
+  <div class="section-heading"><div><div class="eyebrow">THE LIVING WORLD</div><h2>Find a Seed</h2></div><span class="count-label" id="resultCount">0 discoveries</span></div>
+  <div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search the unknown..." aria-label="Search Seeds"></div>
+  <div class="filter-row" id="filters">
+    <button class="filter active" data-filter="All">All</button><button class="filter" data-filter="Mystery">Mystery</button><button class="filter" data-filter="Nature">Nature</button><button class="filter" data-filter="Artifact">Artifact</button><button class="filter" data-filter="Dream">Dream</button>
+  </div>
+  <div id="seedGrid" class="seed-grid"></div>
+  <div id="emptyState" class="empty-state hidden"><div class="empty-symbol">◌</div><h3>Nothing found. Yet.</h3><p>Try another search, or plant the first Seed.</p><button class="secondary-btn" id="emptyCreate">Create a Seed</button></div>
+</section>
+
+<section id="createView" class="view">
+  <div class="section-heading"><div><div class="eyebrow">LEAVE SOMETHING BEHIND</div><h2>Plant a Seed</h2></div></div>
+  <div class="form-card">
+    <label for="seedName">Give it a name</label><input id="seedName" maxlength="48" placeholder="The whispering doorway">
+    <label for="seedType">Choose its nature</label><select id="seedType"><option>Mystery</option><option>Nature</option><option>Artifact</option><option>Dream</option></select>
+    <label for="seedStory">What should explorers know?</label><textarea id="seedStory" rows="4" maxlength="240" placeholder="A small clue, a strange thought, or the beginning of a story..."></textarea>
+    <div class="form-note"><span>✧</span><span>Every Seed can evolve when someone adds a new perspective.</span></div>
+    <button class="primary-btn full" id="publishSeed">Plant this Seed <span>↗</span></button>
+    <p class="microcopy">This release saves Seeds on this device only. No account or server is connected.</p>
+  </div>
+</section>
+
+<section id="savedView" class="view">
+  <div class="section-heading"><div><div class="eyebrow">YOUR COLLECTION</div><h2>Saved Seeds</h2></div></div>
+  <div id="savedGrid" class="seed-grid"></div>
+  <div id="savedEmpty" class="empty-state"><div class="empty-symbol">♡</div><h3>Your collection starts here.</h3><p>Save Seeds that make you curious.</p></div>
+</section>
+
+<section id="activityView" class="view">
+  <div class="section-heading"><div><div class="eyebrow">TRACES LEFT BEHIND</div><h2>World Activity</h2></div></div>
+  <div id="activityList" class="activity-list"></div>
+  <div id="activityEmpty" class="empty-state"><div class="empty-symbol">↗</div><h3>A quiet world.</h3><p>Plant or evolve a Seed to leave the first trace.</p></div>
+</section>
+</main>
+<footer><span>WORLDTIDE</span><span>MAKE THE UNKNOWN YOURS.</span></footer>
+</div>
+
+<div class="modal-backdrop hidden" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+ <article class="detail-panel">
+  <button class="close-btn" id="closeDetail" aria-label="Close">×</button>
+  <div class="detail-art" id="detailArt"><span>◉</span></div>
+  <div class="detail-content">
+   <div class="eyebrow" id="detailType">MYSTERY · SEED</div><h2 id="detailTitle"></h2><p id="detailStory" class="detail-story"></p>
+   <div class="detail-meta"><span id="detailStage">STAGE 1</span><span id="detailEvolutions">0 EVOLUTIONS</span></div>
+   <h3>Evolution trail</h3><div id="detailHistory" class="history"></div>
+   <label for="evolutionText">Add your perspective</label><textarea id="evolutionText" rows="3" maxlength="180" placeholder="What changes because you were here?"></textarea>
+   <button class="primary-btn full" id="evolveBtn">Evolve this Seed <span>↗</span></button>
+   <button class="secondary-btn full" id="saveBtn">♡ Save to collection</button>
+  </div>
+ </article>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+<div class="modal-backdrop hidden" id="aboutModal" role="dialog" aria-modal="true">
+ <article class="about-panel"><button class="close-btn" id="closeAbout">×</button><div class="eyebrow">ABOUT THIS EXPERIMENT</div><h2>A world shaped by many.</h2><p>WORLDTIDE is an experimental concept: people plant digital Seeds, and each contribution changes their shared story.</p><p><strong>V1 reality check:</strong> this is a single-device edition. Seeds and activity are stored in your browser. Location discovery and multiplayer are not enabled yet.</p><button class="primary-btn full" id="aboutDone">Got it</button></article>
+</div>
+<script src="app.js"></script>
+</body></html>
