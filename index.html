@@ -10,8 +10,18 @@
 <div class="app-shell">
 <header class="topbar">
   <a class="brand" href="#" aria-label="WORLDTIDE home"><span class="brand-mark">◉</span><span>WORLD<span class="tide">TIDE</span></span></a>
-  <div class="top-actions"><span class="local-pill"><i></i> LOCAL WORLD</span><button class="icon-btn" id="aboutBtn" aria-label="About">?</button></div>
+  <div class="top-actions"><span class="local-pill" id="worldStatus"><i></i> SHARED WORLD</span><button class="icon-btn" id="aboutBtn" aria-label="About">?</button></div>
 </header>
+<section class="auth-bar" aria-label="WORLDTIDE account">
+  <div class="auth-status" id="authStatus">Connect to the shared world</div>
+  <div class="auth-fields" id="authFields">
+    <input id="authEmail" type="email" autocomplete="email" placeholder="Email address" aria-label="Email address">
+    <input id="authPassword" type="password" autocomplete="current-password" placeholder="Password (min 6)" aria-label="Password">
+    <button class="auth-btn" id="signInBtn">Log in</button>
+    <button class="auth-btn secondary" id="signUpBtn">Sign up</button>
+  </div>
+  <button class="auth-btn secondary hidden" id="signOutBtn">Log out</button>
+</section>
 <main>
 <section class="hero">
   <div class="eyebrow"><span class="pulse"></span> YOUR WORLD IS WAITING</div>
@@ -52,7 +62,7 @@
     <label for="seedStory">What should explorers know?</label><textarea id="seedStory" rows="4" maxlength="240" placeholder="A small clue, a strange thought, or the beginning of a story..."></textarea>
     <div class="form-note"><span>✧</span><span>Every Seed can evolve when someone adds a new perspective.</span></div>
     <button class="primary-btn full" id="publishSeed">Plant this Seed <span>↗</span></button>
-    <p class="microcopy">This release saves Seeds on this device only. No account or server is connected.</p>
+    <p class="microcopy">Seeds are shared with the WORLDTIDE community. Log in to create, evolve or save Seeds.</p>
   </div>
 </section>
 
@@ -90,5 +100,6 @@
 <div class="modal-backdrop hidden" id="aboutModal" role="dialog" aria-modal="true">
  <article class="about-panel"><button class="close-btn" id="closeAbout">×</button><div class="eyebrow">ABOUT THIS EXPERIMENT</div><h2>A world shaped by many.</h2><p>WORLDTIDE is an experimental concept: people plant digital Seeds, and each contribution changes their shared story.</p><p><strong>V1 reality check:</strong> this is a single-device edition. Seeds and activity are stored in your browser. Location discovery and multiplayer are not enabled yet.</p><button class="primary-btn full" id="aboutDone">Got it</button></article>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="app.js"></script>
 </body></html>
